@@ -1,0 +1,15 @@
+$colors : (
+  "primary": #000,
+  "secondary": #302F2D,
+  "light": #fff,
+  "blue": #00368f,
+  "danger": #DE1339,
+  "warning": #fcae43,
+  "gray": #C0C0C0
+);
+
+@each $name, $val in $colors {
+  .bg--#{$name} {
+    background-color: $val;
+  }
+}

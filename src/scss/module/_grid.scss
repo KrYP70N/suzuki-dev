@@ -1,0 +1,97 @@
+/* GRID SUMMARY
+ * base : flex
+ * container : 90% (max 1600)
+ * grid container class : row
+ * grid item aligns clalss : row--item-[center, start, end]
+ * grid content aligns : row--content-[center, start, end, space-between, space-around, space-evenly]
+ * direction: row--dir-[row, col, row-rev, col-rev]
+ */
+
+
+// - grid variable, mixin (function)
+$max-width: 1600px;
+$max: 90%;
+$default-padding: 1rem;
+$item : ('center': center, start: flex-start, end: flex-end);
+$content : ('center': center, 'start': flex-start, 'end': flex-end, 'between': space-between, 'around': space-around, 'evenly': space-evenly);
+$direction : ('row': row, 'col': column, 'row-rev': row-reverse, 'col-rev': column-reverse);
+$no-of-col : 12;
+$media-queries : (
+  'xl' : 1400,
+  'lg' : 1199,
+  'md' : 991,
+  'sm' : 767,
+  'xs' : 576
+);
+
+// - styling init
+@each $name, $val in $item {
+  .row--item-#{$name} {
+    align-items: $val;
+  }
+}
+
+@each $name, $val in $content {
+  .row--content-#{$name} {
+    justify-content: $val;
+  }
+}
+
+@each $name, $val in $direction {
+  .flex--dir-#{$name} {
+    flex-direction: $val;
+  }
+}
+
+.container {
+  max-width: $max;
+  width: $max-width;
+  margin: 0 auto;
+  padding: $default-padding;
+  &--fit-height {
+    @extend .container;
+    height: calc(100vh - 70px);
+  }
+  &--fit-width {
+    @extend .container;
+    width: 100%;
+  }
+}
+
+.row {
+  @extend .d--flex;
+  margin-left: -#{$default-padding};
+  margin-right: -#{$default-padding};
+}
+
+// grid column formulation
+@for $col from 1 to 13 {
+  .col--#{$col} {
+    width: calc(($col * 100%) / 12);
+  }
+  @each $media, $val in $media-queries {
+    @media screen and (max-width: #{$val}px) {
+      .col-#{$media}-#{$col} {
+        width: calc(($col * 100%) / 12);
+      }
+    }
+  }
+  // default column width
+  @if $col == 12 {
+    .col {
+      width: 100%;
+    }
+    @each $media, $val  in $media-queries {
+      @media screen and (max-width: #{$val}px) {
+        .col-#{$media} {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// margin 0 auto
+.m-0-auto {
+  margin: 0 auto;
+}

@@ -1,0 +1,117 @@
+/* TYPO SUMMARY
+ * type notation  - 
+ * RobotoRlex : En default font
+ * Myanmar3 : My default font, 
+ * SuzukiProHeadline : Headline for customized font
+ * Fallback : Any san-serif font of browser
+ * Unicode Range : English Glyph (U+0000-007F), Myanmar Glyph (U+1000-109F)
+ */
+
+// - font variable, mixin (function)
+
+// font size
+$font-sizes: ('4xs': 14, '3xs': 18, '2xs': 20, 'xs': 23, 'sm': 29, 'md': 40, 'lg': 42, 'xl': 45, '2xl': 47, '3xl': 50, '4xl': 52);
+
+// font family
+$font-families: 
+('family': RobotoFlex, path: 'RobotoFlex-Regular.ttf'),
+('family': SuzukiProHead, path: 'SuzukiPROHeadline.otf'),
+('family': Myanmar3, path: 'Myanmar3-2018.ttf'),
+// add your new font-family ('family': name, path: file),
+;
+
+// font weight
+$font-weights: ('light': 200, 'medium': 400, 'bold': 700);
+
+// text decoration 
+$text-decorations: overline, underline, line-through;
+
+// text align
+$text-align: center, left, right;
+
+// mixin
+@mixin fontFace($name, $url) {
+  font-family: $name; 
+  src: url("../assets/font/" +  $url);
+  font-display: swap;
+  // unicode-range: U+0000-007F, U+1000-109F;
+}
+
+// - styling init
+
+// font-family
+@each $font in $font-families {
+  @font-face {
+    @include fontFace(map.get($font, 'family'), map.get($font, 'path'));  
+  }
+}
+
+
+// font REM ratio and font-family localization
+
+html {
+  font-size: 100%;
+  @each $name, $val in $media-queries {
+    @if $val > map.get($media-queries, 'md') {
+      @media screen and (max-width: #{$val + px}) {
+        font-size: calc(($val / 1450) * 100%);
+      }
+    }
+  }
+  // @media screen and (max-width: 1200px) {
+  //   font-size: 80%;
+  // }
+  body {
+    @extend .txt--size-3xs;
+    font-family: RobotoFlex, sans-serif;
+  }
+  &[lang='my'] {
+    body {
+      font-family: Myanmar3, sans-serif;
+    }
+  }
+}
+
+/* font size
+ * calculation rem to px: font size / 16
+ * default : 1.13rem
+ * title : 3.25rem
+ * title small : 2.8rem
+ * title extra small : 2.6rem
+ */
+ @mixin font-prop($family, $size) {
+  font-family: $family;
+  font-size: pxToREM($size);
+ }
+.txt {
+  @each $name, $val in $colors {
+    &--color-#{$name} {
+      color: map.get($colors, $name);
+    }
+  }
+  @each $name, $val in $font-sizes {
+    &--size-#{$name} {
+      font-size: pxToREM($val);
+    }
+  }
+  @each $name, $val in $font-weights {
+    &--weight-#{$name} {
+      font-weight: $val;
+    }
+  }
+  @each $val in $text-decorations {
+    &--dec-#{val} {
+      text-decoration: $val;
+    }
+  }
+  @each $val in $text-align {
+    &--#{$val} {
+      text-align: $val;
+    }
+  }
+}
+
+// icon font props
+.ico {
+  display: inline-block;
+}

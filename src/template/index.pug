@@ -1,0 +1,40 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Suzuki Myanmar
+    //- preloading assets
+    //- link(rel="preload", href="./assets/font/RobotoFlex-Regular.ttf", as="font", type="font/ttf", crossorigin)
+    //- link(rel="preload", href="./assets/font/Myanmar3-2018.ttf", as="font", type="font/ttf", crossorigin)
+    //- link(rel="preload", href="./assets/font/SuzukiPROHeadline.otf", as="font", type="font/otf", crossorigin)
+    //- style link
+    link(rel="stylesheet", href="./css/index.css")
+  body 
+    include ./components/header.pug
+    include ./components/banner.pug
+    section.highlight-section--service.scroll-animate
+      .highlight-section__img.item(style='background-image: url(./assets/img/suzuki-myanmar-service.jpg)')
+        img(src="./assets/img/suzuki-myanmar-service.jpg", alt="")
+      .highlight-section__content.item
+        h2 SERVICE
+        p To be peace of mind quality assurance servicing, we Suzuki Myanmar Service Centers are currently using the latest technology analyzer, certified and competent technicians, genuine spare parts. We commit to your satisfaction and never overlook your needs.
+        a.btn--outline--light(href="#")
+          span.txt Learn More
+          span.ico
+            img(src="./assets/img/plus-white.png", alt="")
+        a.btn--outline--primary(href="#")
+          span.txt Learn More
+          span.ico
+            img(src="./assets/img/plus-white.png", alt="")
+    script(src="./js/script.js")
+    script. 
+      //- const scrollanimate = document.querySelectorAll('.scroll-animate');
+      //- for(let i=0; i<scrollanimate.length; i++) {
+      //-   let ele = scrollanimate[i]
+      //-   let scrollTop = ele.offsetTop
+      //-   window.addEventListener('scroll', (e) => {
+      //-     console.log(e.scrollTop)
+      //-   })
+      //- }

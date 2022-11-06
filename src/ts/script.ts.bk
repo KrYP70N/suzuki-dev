@@ -1,0 +1,112 @@
+type Ele = Element | null | undefined
+type Eles = NodeListOf<Element> | undefined
+
+/*
+  name : header gab adjustment
+*/
+const header = document.querySelector('header') as HTMLElement
+const headerHeight : number = header.offsetHeight
+const main : Ele = document.querySelector('main')
+header && main?.setAttribute('style', `padding-top: ${headerHeight}px`)
+
+
+/*
+  name : header search
+  action : open, close, onescape
+*/
+const headerSearch : Ele = document.querySelector('.header--search'),
+headerSearchOn : Ele = headerSearch?.querySelector('a'),
+headerSearchClose : Ele = headerSearch?.querySelector('.close'),
+headerSearchInput : Ele = headerSearch?.querySelector('input')
+
+headerSearchOn?.addEventListener('click', e => {
+  e.preventDefault()
+  headerSearch?.classList.add('on')
+})
+
+// close event
+headerSearchClose?.addEventListener('click', _ => headerSearch?.classList.remove('on'))
+
+// escape event
+headerSearchInput?.addEventListener('keydown', (e) : void => {
+  const event = <KeyboardEvent> e
+  const key : string = event.code
+  if(key === 'Escape') headerSearch?.classList.remove('on')
+})
+
+/*
+  name : sub nav (header primary navigation)
+*/
+const navlist : Eles = document.querySelectorAll('.nav-list__primary > li .nav--submenu')
+navlist.forEach((item : Element) => {
+  const parentCoord : DOMRect | undefined = item.parentElement?.getBoundingClientRect()
+  const container = item.querySelector('.nav--submenu__container')
+  container?.setAttribute('style', `width: ${window.innerWidth - ((parentCoord?.x || 0) * 2)}px`)
+})
+
+/*
+  name : carousel
+*/
+interface CAROUSEL_INTERFACE {
+  selector: string // slider class
+  init?: () => void // function for before slider init
+  afterInit?: () => void // function for after slider init
+  fitVH?: boolean, // enable full height slider
+  postPerSlide?: number // total slide within viewport
+  fadeMode?: boolean // enable fademode
+  slideIndex?: number // default slide index [default is 0]
+}
+interface SLIDE_INTERFACE {
+  path: string,
+  color: string,
+  max: number
+}
+class CAROUSEL {
+  BASE : CAROUSEL_INTERFACE
+  SLIDES : SLIDE_INTERFACE[]
+  SLIDE_INDEX : number = 0
+
+  constructor(BASE : CAROUSEL_INTERFACE) {
+    // init
+    BASE.init?.()
+    // slider initialization
+    this.BASE = BASE
+    const {selector, fitVH, postPerSlide, fadeMode, slideIndex} = this.BASE
+    this.SLIDE_INDEX = slideIndex || 0
+    const target : Ele = document.querySelector(selector),
+    slides : Eles = target?.querySelectorAll(`${selector} > *`)
+    
+    // set slider width + height
+    const height = fitVH ? `calc(100vh - ${headerHeight}px)` : 'auto'
+    const width = `calc(100% / ${postPerSlide || 1})` // adjust slide with current viewport
+
+    // container & background processing
+    slides?.forEach(slide => {     
+      this.SLIDES = JSON.parse(slide.getAttribute('data-bg-set') || "")?.data
+      const maxValues = this.SLIDES.map(item => item.max) // max values
+      const max = Math.max(...maxValues) // maximum value of maxValues
+      const dfeaultSlider = this.SLIDES.filter(item => !item.max)[0] || this.SLIDES.filter(item => item.max === max)[0] // default slider
+      const currentRange = Math.min(...(maxValues.filter(item => item >= window.innerWidth))) // check current view range
+      const currentSlide = String(currentRange) === 'Infinity' ? dfeaultSlider : this.SLIDES.filter(slide => slide.max === currentRange)[0]
+      slide.setAttribute('style', `
+        background: url(${currentSlide.path}) no-repeat center / cover;
+        height: ${height};
+        width: ${width};
+      `)
+    })
+
+    // after init
+    BASE.afterInit?.()
+  }
+}
+
+// create new slider
+
+
+const homeBanner = new CAROUSEL({
+selector: '.banner-hero',
+  fitVH: true,
+  postPerSlide: 2
+})
+
+// homeBanner.onInit(_ => console.log('hi'))

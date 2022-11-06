@@ -1,0 +1,11 @@
+/* POSITION SUMMARY
+ * class name : pos-[relative, absolute, fixed, static, unset]
+ */
+
+ $position : (relative, absolute, fixed, static, unset);
+
+ @each $val in $position {
+  .pos--#{$val} {
+    position: $val;
+  }
+ }

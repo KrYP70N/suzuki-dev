@@ -1,0 +1,59 @@
+.btn {
+  @extend .pos--relative;
+  display: inline-block;
+  padding: $default-padding;
+  border: 1px solid;
+  min-width: pxToREM(170);
+  text-align: center;
+  border-radius: pxToREM(5);
+  box-sizing: border-box;
+  span {
+    &.ico {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      transition: all .3s ease;
+      opacity: 0;
+      img {
+        width: pxToREM(18);
+      }
+    }
+  }
+  &:hover {
+    span {
+      &.txt {
+        opacity: 0;
+      }
+      &.ico {
+        opacity: 1;
+      }
+    }
+  }
+  &--outline {
+    
+    @each $name, $val in $colors {
+      &--#{$name} {
+        @extend .btn;
+        border-color: $val;
+        color: $val;
+      }
+    }
+  }
+  &--solid {
+    @extend .btn;
+    @extend .bg--primary;
+    @extend .txt--color-light;
+    border: none;
+    @each $name, $val in $colors {
+      &--#{$name} {
+        @extend .btn--solid;
+        @extend .bg--#{$name};  
+      }
+    }
+    &--light {
+      @extend .bg--light;
+      color: map.get($colors, 'primary');
+    }
+  }
+}

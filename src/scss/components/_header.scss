@@ -1,0 +1,272 @@
+/* header component style
+ * sub components
+ * mega menu : .megamenu
+ * drawer menu : .drawermenu
+ */
+
+header {
+  @extend .bg--light;
+  @extend .pos--fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-bottom: pxToREM(1) solid map.get($colors, 'blue');
+  z-index: 999;
+  nav {
+    @extend .container;
+    > section {
+      @extend .row;
+      @extend .row--item-center;
+      @extend .row--content-between;
+    }
+  }
+  
+  .nav-list {
+    @extend .row;
+    @extend .row--item-center;
+    margin: 0;
+    &__logo {
+      width: pxToREM(160);
+    }
+    > li {
+      &:not(:last-child) {
+        margin-right: pxToREM(80);
+      }
+      a {
+        &:hover {
+          @extend .txt--color-danger;
+        }
+      }
+      .megamenu {
+        @extend .pos--absolute;
+        width: 100%;
+        height: 100vh;
+        top: 100%;
+        left: 0;
+        transition: all .3s ease;
+        visibility: hidden;
+        opacity: 0;
+        box-sizing: border-box;
+        &__wrapper {
+          @extend .bg--primary;
+          @extend .pos--absolute;
+          opacity: .5;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+        }
+        &__content {
+          @extend .bg--light;
+          @extend .pos--relative;
+          width: 100%;
+          padding: $default-padding;
+          border-top: 1px solid map.get($colors, 'blue');
+          box-sizing: border-box;
+          overflow-x: hidden;
+        }
+        .car-model {
+          @extend .m-0-auto;
+          padding: $default-padding;
+          li:not(:first-child) {
+            @extend .txt--center;
+            @extend .pos--relative;
+            img {
+              width: pxToREM(215);
+              display: block;
+              margin-bottom: pxToREM(14);
+              transform: scale(.9);
+              transition: all .3s ease;
+              max-width: 100%;
+            }
+            &:hover {
+              @extend .txt--color-danger;
+              img {
+                transform: scale(1);
+              }
+            }
+            a {
+              @extend .pos--absolute;
+              width: 100%;
+              height: 100%;
+              top: 0;
+              left: 0;
+              z-index: 1;
+            }
+          }
+          &__list {
+            @extend .d--flex;
+            @extend .row--content-start;
+            @extend .row--item-center;
+            padding: $default-padding 0;
+            border-bottom: 1px solid map.get($colors, 'gray');
+            .title span {
+              padding-bottom: pxToREM(4);
+              transition:  all .3s ease;
+              border-bottom: 2px solid map.get($colors, 'light');
+            }
+            &:hover {
+              .title span {
+                border-bottom: 2px solid map.get($colors, 'danger');
+              }
+            }
+            li {
+              width: 25%;
+            }
+          }
+          &:last-child {
+            .car-model__list {
+              padding-bottom: 0;
+              border-bottom: 0;
+            }
+          }
+        }
+        .sublink {
+          @extend .d--flex;
+          @extend .flex--dir-col;
+          @extend .row--content-start;
+          flex-wrap: wrap;
+          max-height: pxToREM(100);
+          width: pxToREM(500);
+          margin-left: -$default-padding;
+          li {
+            padding: $default-padding 0;
+          }
+        }
+      }
+      &:hover {
+        .megamenu {
+          opacity: 1;
+          visibility: visible;
+          
+        }
+      }
+    }
+    &--secondary {
+      @extend .row;
+      @extend .row--item-center;
+      margin: 0;
+      > li {
+        @extend .d--flex;
+        @extend .row--item-center;
+        &:not(:last-child) {
+          margin-right: pxToREM(29);
+        }
+        > a {
+          @extend .d--flex;
+          @extend .row--item-center;
+          .ico {
+            margin-right: calc($default-padding / 2);
+          }
+          &:hover .ico * {
+            fill: map.get($colors, 'blue')!important;
+          }
+        }
+        &.search {
+          @extend .pos--relative;
+          height: 35px;
+          transition: all .3s ease;
+          &.active {
+            width: pxToREM(250)!important;
+            form {
+              visibility: visible;
+              opacity: 1;
+            }
+          }
+          form {
+            @extend .pos--absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .3s ease;
+            .search__close {
+              @extend .pos--absolute;
+              top: 50%;
+              right: calc($default-padding / 1.5);
+              width: pxToREM(13.4);
+              transform: translateY(-50%);
+              cursor: pointer;
+            }
+            input {
+              width: 100%;
+              height: 100%;
+              padding-left: 1rem;
+              padding-right: 2rem;
+              box-sizing: border-box;
+              border-radius: 1rem;
+              border: 1px solid map.get($colors, blue);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .lang-switch {
+    @extend .d--flex;
+    cursor: pointer;
+    > span {
+      @extend .bg--gray;
+      @extend .d--flex;
+      width: pxToREM(28);
+      height: pxToREM(16);
+      margin: 0 calc($default-padding / 2);
+      box-sizing: border-box;
+      border-radius: pxToREM(3);
+      &:before {
+        @extend .bg--danger;
+        @extend .d--inline-block;
+        content: ' ';
+        width: calc(50% - pxToREM(4));
+        height: calc(100% - pxToREM(6));
+        margin: pxToREM(3);
+        border-radius: pxToREM(2);
+      }
+    }
+    &.active--en {
+      > b:first-child {
+        @extend .txt--color-danger
+      }
+    }
+    &.active--my {
+      > b:last-child {
+        @extend .txt--color-danger
+      }
+      > span {
+        @extend .flex--dir-row-rev;
+      }
+    }
+  }
+  
+  .nav--pc {
+    @media screen and (max-width: #{map.get($media-queries, 'md') + px}) {
+      display: none;
+    }
+  }
+
+  .nav--mb {
+    @extend .container;
+    @extend .d--none;
+    @media screen and (max-width: #{map.get($media-queries, 'md') + px}) {
+      display: block;
+    }
+    .nav-list__logo {
+      width: pxToREM(100)
+    }
+    > section {
+      @extend .row;
+      @extend .row--item-center;
+      @extend .row--content-between;
+      .drawer {
+        @extend .d--flex;
+        @extend .row--item-center;
+        li {
+          margin-right: pxToREM(10); 
+        }
+      }
+    }
+  }
+}

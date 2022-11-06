@@ -1,0 +1,11 @@
+/* DISPLAY SUMMARY
+ * class name : d-[inline, block, inline-block, flex]
+ */
+
+ $dispaly : (inline, block, inline-block, flex, none);
+
+ @each $val in $dispaly {
+  .d--#{$val} {
+    display: $val;
+  }
+ }

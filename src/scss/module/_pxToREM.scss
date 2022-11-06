@@ -1,0 +1,11 @@
+/* Px to REM covert function
+ * usage : pxToREM(px value)
+ */
+
+@function pxToREM($data) {
+  @return calc($data / 16) + rem;
+}
+
+@function pxToEM($data) {
+  @return calc($data / 16) + em;
+}
