@@ -10,7 +10,7 @@
 
 // - grid variable, mixin (function)
 $max-width: 1600px;
-$max: 90%;
+$max: calc(100% - 200px);
 $default-padding: 1rem;
 $item : ('center': center, start: flex-start, end: flex-end);
 $content : ('center': center, 'start': flex-start, 'end': flex-end, 'between': space-between, 'around': space-around, 'evenly': space-evenly);
@@ -56,10 +56,14 @@ $media-queries : (
     @extend .container;
     width: 100%;
   }
+  @media screen and (max-width: #{map.get($media-queries, 'md') + px}) {
+    max-width: calc(100% - 64px);
+  }
 }
 
 .row {
   @extend .d--flex;
+  flex-wrap: wrap;
   margin-left: -#{$default-padding};
   margin-right: -#{$default-padding};
 }
@@ -70,7 +74,7 @@ $media-queries : (
     width: calc(($col * 100%) / 12);
   }
   @each $media, $val in $media-queries {
-    @media screen and (max-width: #{$val}px) {
+    @media screen and (min-width: #{$val}px) {
       .col-#{$media}-#{$col} {
         width: calc(($col * 100%) / 12);
       }

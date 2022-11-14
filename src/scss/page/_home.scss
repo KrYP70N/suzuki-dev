@@ -1,0 +1,22 @@
+#home {
+  h2 {
+    @extend .txt--size-4xl;
+    margin-bottom: pxToREM(26);
+    font-family: SuzukiProHead;
+    text-transform: uppercase;
+  }
+  .hire-purchase {
+    padding: 100px 0;
+    @extend .txt--color-light;
+    background: #{map.get($colors, 'tertiary')} url('../assets/img/suzuki-myanmar-ertiga-hire-purchase.png') no-repeat top right / 70%;
+    p {
+      margin-bottom: pxToREM(37);
+    }
+  }
+  .news {
+    padding: pxToREM(100) 0;
+    h2 {
+      @extend .txt--center;
+    }
+  }
+}

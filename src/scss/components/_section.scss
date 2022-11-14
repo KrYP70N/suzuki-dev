@@ -3,17 +3,29 @@
   height: 100vh;
   @extend .d--flex;
   box-sizing: border-box;
-  @media screen and (max-width: 991px) {
+  @media screen and (max-width: #{map.get($media-queries, 'md') + 'px'}) {
     flex-direction: column-reverse;
     padding: $default-padding;
     background: none;
+    height: auto;
+    border-bottom: 1px solid rgba(map.get($colors, 'primary'), .5);
   }
   &__img {
+    @extend .pos--relative;
     width: 57%;
     height: 100%;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    &:before {
+      @extend .pos--absolute;
+      content: ' ';
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
     img {
       display: none;
       @media screen and (max-width: #{map.get($media-queries, 'md')}px) {
@@ -32,12 +44,17 @@
     height: 100vh;
     padding: $default-padding;
     box-sizing: border-box;
+    padding-right: 100px;
     @extend .d--flex;
     @extend .row--content-center;
     @extend .row--item-start;
     @extend .flex--dir-col;
+    @media screen and (max-width: #{map.get($media-queries, 'md') + 'px'}) {
+      padding-right: 0;
+    }
     h2 {
       @extend .txt--size-4xl;
+      text-transform: uppercase;
       line-height: pxToREM(64);
       font-family: SuzukiProHead;
       margin-bottom: pxToREM(26);
@@ -45,21 +62,21 @@
     p {
       margin-bottom: pxToREM(46);
     }
-    .btn--outline--primary {
+    .mb {
       display: none;
     }
-    @media screen and (max-width: 991px) {
+    @media screen and (max-width: #{map.get($media-queries, 'md') + 'px'}) {
       background: none!important;
       width: 100%;
       font-size: 100%;
       box-sizing: border-box;
       color: #000;
       height: auto;
-      .btn--outline--primary {
+      .mb {
         display: inline-block;
         margin-bottom: 30px;
       }
-      .btn--outline--light {
+      .pc {
         display: none;
       }
     }
@@ -69,8 +86,92 @@
     @extend .bg--primary;
     @extend .txt--color-light;
     line-height: pxToREM(21);
+    .highlight-section__img {
+      &:before {
+        background: linear-gradient(to left, #{map.get($colors, 'primary')}, transparent 20%);
+        @media screen and (max-width: #{map.get($media-queries, 'md') + px}) {
+          display: none;
+        }
+      }
+    }
+  }
+  &--spare-parts {
+    @extend .highlight-section;
+    @extend .bg--light;
+    .highlight-section__img {
+      &:before {
+        background: linear-gradient(to right, #{map.get($colors, 'light')}, transparent 20%);
+        @media screen and (max-width: #{map.get($media-queries, 'md') + px}) {
+          display: none;
+        }
+      }
+    }
+  }
+  &--dealer {
+    @extend .highlight-section;
+    @extend .pos--relative;
+    background: url('../assets/img/suzuki-myanmar-dealer-information.png') no-repeat center / cover;
+    padding: 0;
+    &:before {
+      @extend .pos--absolute;
+      content: ' ';
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: linear-gradient(to right, map.get($colors, 'primary'), transparent);
+    }
+    .highlight-section__content, .highlight-section__img {
+      @extend .d--flex;
+      @extend .flex--dir-col;
+      @extend .row--content-center;
+      @extend .txt--color-light;
+      @extend .pos--relative;
+      z-index: 9;
+      height: 100vh;
+      padding-left: 0;
+      @media screen and (max-width: #{map.get($media-queries, 'md') + 'px'}) {
+        height: auto;
+      }
+      > img {
+        @extend .d--block;
+        max-width: 70%;
+        margin: 0 auto;
+        @media screen and (max-width: #{map.get($media-queries, 'md') + 'px'}) {
+          max-width: 100%;
+        }
+      }
+    }
+    .btn--solid--primary {
+      margin: $default-padding auto;
+      @extend .d--none;
+      @media screen and (max-width: #{map.get($media-queries, 'md') + 'px'}) {
+        display: inline-block;
+      }
+    }
+    @media screen and (max-width: #{map.get($media-queries, 'md') + 'px'}) {
+      background: none;
+      .highlight-section__content {
+        color: #{map.get($colors, 'primary')};
+      }
+      .highlight-section__img {
+        padding: 30px $default-padding;
+        background: url('../assets/img/suzuki-myanmar-dealer-information.png') no-repeat center / cover!important;
+      }
+    }
+  }
+  &--reverse {
+    @extend .flex--dir-row-rev;
+    .highlight-section__content {
+      padding-right: 0;
+      padding-left: 100px;
+      @media screen and (max-width: #{map.get($media-queries, 'md') + 'px'}) {
+        padding-left: 0;
+      }
+    }
   }
 }
+
 
 .scroll-animate {
   .item {
@@ -82,5 +183,5 @@
       transform: translateY(0);
     }
   }
-
 }
+

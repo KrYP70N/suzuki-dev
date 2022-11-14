@@ -6,35 +6,82 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Suzuki Myanmar
     //- preloading assets
-    //- link(rel="preload", href="./assets/font/RobotoFlex-Regular.ttf", as="font", type="font/ttf", crossorigin)
-    //- link(rel="preload", href="./assets/font/Myanmar3-2018.ttf", as="font", type="font/ttf", crossorigin)
-    //- link(rel="preload", href="./assets/font/SuzukiPROHeadline.otf", as="font", type="font/otf", crossorigin)
+    link(rel="preload", href="./assets/font/RobotoFlex-Regular.ttf", as="font", type="font/ttf", crossorigin)
+    link(rel="preload", href="./assets/font/Myanmar3-2018.ttf", as="font", type="font/ttf", crossorigin)
+    link(rel="preload", href="./assets/font/SuzukiPROHeadline.otf", as="font", type="font/otf", crossorigin)
     //- style link
     link(rel="stylesheet", href="./css/index.css")
   body 
     include ./components/header.pug
-    include ./components/banner.pug
-    section.highlight-section--service.scroll-animate
-      .highlight-section__img.item(style='background-image: url(./assets/img/suzuki-myanmar-service.jpg)')
-        img(src="./assets/img/suzuki-myanmar-service.jpg", alt="")
-      .highlight-section__content.item
-        h2 SERVICE
-        p To be peace of mind quality assurance servicing, we Suzuki Myanmar Service Centers are currently using the latest technology analyzer, certified and competent technicians, genuine spare parts. We commit to your satisfaction and never overlook your needs.
-        a.btn--outline--light(href="#")
-          span.txt Learn More
-          span.ico
-            img(src="./assets/img/plus-white.png", alt="")
-        a.btn--outline--primary(href="#")
-          span.txt Learn More
-          span.ico
-            img(src="./assets/img/plus-white.png", alt="")
+    //- include ./components/banner.pug
+    article#home
+      section.highlight-section--service.scroll-animate
+        .highlight-section__img.item(style='background-image: url(./assets/img/suzuki-myanmar-service.png)')
+          img(src="./assets/img/suzuki-myanmar-service.png", alt="")
+        .highlight-section__content.item
+          h2 SERVICE
+          p To be peace of mind quality assurance servicing, we Suzuki Myanmar Service Centers are currently using the latest technology analyzer, certified and competent technicians, genuine spare parts. We commit to your satisfaction and never overlook your needs.
+          a.btn--outline--light.pc(href="#")
+            span.txt Learn More
+            span.ico
+              img(src="./assets/img/plus-white.png", alt="")
+          a.btn--outline--primary.mb(href="#")
+            span.txt Learn More
+            span.ico
+              img(src="./assets/img/plus.png", alt="")
+      
+      section.highlight-section--spare-parts.highlight-section--reverse.scroll-animate
+        .highlight-section__img.item(style='background-image: url(./assets/img/suzuki-myanmar-spareparts.png)')
+          img(src="./assets/img/suzuki-myanmar-spareparts.png", alt="")
+        .highlight-section__content.item
+          h2 SERVICE
+          p To be peace of mind quality assurance servicing, we Suzuki Myanmar Service Centers are currently using the latest technology analyzer, certified and competent technicians, genuine spare parts. We commit to your satisfaction and never overlook your needs.
+          a.btn--outline--primary.pc(href="#")
+            span.txt Learn More
+            span.ico
+              img(src="./assets/img/plus.png", alt="")
+          a.btn--outline--primary.mb(href="#")
+            span.txt Learn More
+            span.ico
+              img(src="./assets/img/plus.png", alt="")
+      
+      section.highlight-section--dealer
+        .container
+          .row
+            .col-md-6.highlight-section__content
+              h2 Dealer Information
+              p Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit nostrum facere nulla qui, minima voluptates corrupti explicabo facilis, nesciunt possimus dolorem totam voluptate aliquam corporis ad repellendus. Beatae, quibusdam iure!
+              a.btn--solid--light.pc(href="#")
+                span.txt Find Dealer
+                span.ico
+                  img(src="./assets/img/suzuki-myanmar-dealer-black-icn.png", alt="")
+              
+            .col-md-6.highlight-section__img 
+              img(src="./assets/img/suzuki-myanmar-dealer-list.png", alt="")
+
+            a.btn--solid--primary.mb(href="#")
+              span.txt Find Dealer
+              span.ico
+                img(src="./assets/img/suzuki-myanmar-dealer-black-icn.png", alt="")
+        
+      section.hire-purchase
+        .container
+          .row 
+            .col-md-4
+              h2 hire purchase
+              p Find more details about the monthly installments plan from AYA bank and CB bank and own your favourite models.
+              a.btn--solid--light(href="#") Finicial Simulator
+
+      section.news
+        .container
+          .row
+            .col--12
+              h2 News
+              p Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolore porro aliquid error illo. Ex, modi dolore illum eligendi eum tenetur incidunt non tempore quibusdam aut autem mollitia, accusantium magnam?
+            .col--md-6 
+
+
+    script(src="./js/jquery.min.js")
+    script(src="./js/slick.min.js")
+    script(src="./js/script.lib.js")
     script(src="./js/script.js")
-    script. 
-      //- const scrollanimate = document.querySelectorAll('.scroll-animate');
-      //- for(let i=0; i<scrollanimate.length; i++) {
-      //-   let ele = scrollanimate[i]
-      //-   let scrollTop = ele.offsetTop
-      //-   window.addEventListener('scroll', (e) => {
-      //-     console.log(e.scrollTop)
-      //-   })
-      //- }

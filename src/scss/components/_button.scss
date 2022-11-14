@@ -52,6 +52,7 @@
       }
     }
     &--light {
+      @extend .btn--solid;
       @extend .bg--light;
       color: map.get($colors, 'primary');
     }
