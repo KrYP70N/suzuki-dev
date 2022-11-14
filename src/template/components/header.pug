@@ -1,3 +1,75 @@
+article#drawer-menu
+  section
+    .header 
+      img.header__logo(src="./assets/img/suzuki-myanmar-logo.png", alt="")
+      img.header__close(src="./assets/img/suzuki-myanmar-close-dark.png")
+
+    ul.nav-list
+      li.nav-list--item
+        h3 Model
+        p.car-model--title Passenger
+        ul.car-model--list.passenger
+          li
+            a(href="#") 
+              img(src="./assets/img/suzuki-myanmar-swift-white.png", alt="")
+              p Swift
+          li
+            a(href="#") 
+              img(src="./assets/img/suzuki-myanmar-ciaz-white.png", alt="")
+              p Ciaz
+          li
+            a(href="#") 
+              img(src="./assets/img/suzuki-myanmar-ertiga-white.png", alt="")
+              p Ertiga
+        p.car-model--title Commercial
+        ul.car-model--list.commercial
+          li
+            a(href="#") 
+              img(src="./assets/img/suzuki-myanmar-swift-white.png", alt="")
+              p Swift
+          li
+            a(href="#") 
+              img(src="./assets/img/suzuki-myanmar-ciaz-white.png", alt="")
+              p Ciaz
+          li
+            a(href="#") 
+              img(src="./assets/img/suzuki-myanmar-ertiga-white.png", alt="")
+              p Ertiga
+      li.nav-list--item
+        h3 After Sales
+        .row
+          .col--4 
+            a(href="#") Services
+          .col--4 
+            a(href="#") Spare Parts
+      li.nav-list--item
+        h3 Corporate
+        .row
+          .col--4 
+            a(href="#") About Us
+          .col--4 
+            a(href="#") News
+          .col--4 
+            a(href="#") FAQs
+          .col--4
+            a(href="#") Careers
+          .col--4 
+            a(href="#") Press Releses
+
+    .row.social-menu
+      .col--4.txt--center
+        a(href="#") 
+          img(src="./assets/img/suzuki-global.png", alt="")
+          span Global
+      .col--4.txt--center
+        a(href="#")
+          img(src="./assets/img/suzuki-myanmar-facebook.png", alt="")
+          span Facebook
+      .col--4.txt--center
+        a(href="#")
+          img(src="./assets/img/suzuki-myanmar-youtube.png", alt="")
+          span Youtube
+          
 header
   nav.nav--pc
     section
@@ -84,7 +156,7 @@ header
           b MM
 
   nav.nav--mb 
-    section
+    div
       a(href="#") 
         img.nav-list__logo(src="./assets/img/suzuki-myanmar-logo.png", alt="suzuki myanmar logo")
       ul.drawer
@@ -97,3 +169,38 @@ header
           b MM
         li
           span.ico.ico-stack
+
+section.float-icn
+  div.pallet
+  div.pallet
+  div.pallet
+  div.pallet
+
+  img.float-icn__close(src="./assets/img/close.png", alt="")
+
+section.float-menu 
+  a.menu(href="http://") 
+    .float-img
+      img.dark(src="./assets/img/suzuki-myanmar-test-drive-float-icn.png", alt="")
+      img.light(src="./assets/img/suzuki-myanmar-test-drive-white-float-icn.png", alt="")
+    .float-info 
+      span Test Information
+  a.menu(href="#")
+    .float-img
+      img.dark(src="./assets/img/suzuki-myanmar-hire-purchase-black-float-icn.png", alt="")
+      img.light(src="./assets/img/suzuki-myanmar-hire-purchase-white-float-icn.png", alt="")
+    .float-info 
+      span Test Information
+  a.menu(href="#")
+    .float-img
+      img.dark(src="./assets/img/suzuki-myanmar-get-offer-black-float-icn.png", alt="")
+      img.light(src="./assets/img/Get-Offer-White.png", alt="")
+    .float-info 
+      span Test Information
+  a.menu(href="#")
+    .float-img
+      img.dark(src="./assets/img/suzuki-myanmar-dealer-black-icn.png", alt="")
+      img.light(src="./assets/img/suzuki-myanmar-dealer-white-icn.png", alt="")
+    .float-info 
+      span Test Information
+

@@ -56,8 +56,11 @@ $media-queries : (
     @extend .container;
     width: 100%;
   }
+  @media screen and (max-width: #{map.get($media-queries, 'lg') + px}) {
+    max-width: calc(100% - 50px);
+  }
   @media screen and (max-width: #{map.get($media-queries, 'md') + px}) {
-    max-width: calc(100% - 64px);
+    max-width: 100%;
   }
 }
 
@@ -71,11 +74,13 @@ $media-queries : (
 // grid column formulation
 @for $col from 1 to 13 {
   .col--#{$col} {
+    padding: $default-padding;
     width: calc(($col * 100%) / 12);
   }
   @each $media, $val in $media-queries {
     @media screen and (min-width: #{$val}px) {
       .col-#{$media}-#{$col} {
+        padding: $default-padding;
         width: calc(($col * 100%) / 12);
       }
     }
@@ -84,10 +89,12 @@ $media-queries : (
   @if $col == 12 {
     .col {
       width: 100%;
+      padding: $default-padding;
     }
     @each $media, $val  in $media-queries {
       @media screen and (max-width: #{$val}px) {
         .col-#{$media} {
+          padding: $default-padding;
           width: 100%;
         }
       }

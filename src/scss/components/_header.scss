@@ -15,7 +15,7 @@ header {
   nav {
     @extend .container;
     > section {
-      @extend .row;
+      @extend .d--flex;
       @extend .row--item-center;
       @extend .row--content-between;
     }
@@ -256,16 +256,230 @@ header {
     .nav-list__logo {
       width: pxToREM(100)
     }
-    > section {
-      @extend .row;
+    > div {
+      @extend .d--flex;
       @extend .row--item-center;
       @extend .row--content-between;
       .drawer {
         @extend .d--flex;
         @extend .row--item-center;
-        li {
+        li:not(:last-child) {
           margin-right: pxToREM(10); 
+
         }
+      }
+    }
+  }
+}
+
+#drawer-menu {
+  width: 100%;
+  height: 100%;
+  top: -100%;
+  left: 0;
+  background: #{map.get($colors, 'light')};
+  position: fixed;
+  overflow: auto;
+  opacity: 0;
+  z-index: 99;
+  > section {
+    @extend .container;
+    .header {
+      @extend .d--flex;
+      @extend .row--content-between;
+      @extend .row--item-center;
+      @extend .pos--fixed;
+      @extend .bg--light;
+      width: 100%;
+      top: 0;
+      left: 0;
+      padding: $default-padding;
+      &__close {
+        width: pxToREM(18);
+      }
+      &__logo {
+        width: pxToREM(100);
+      }
+    }
+    .nav-list {
+      @extend .row;
+      padding-top: 30px;
+      > li {
+        @extend .col--12;
+        border-bottom: 1px solid rgba(map.get($colors, 'primary'), .2);
+      }
+      h3 {
+        @extend .txt--size-2xs;
+        @extend .d--inline-block;
+        margin-bottom: $default-padding;
+        border-bottom: 1.5px solid #{map.get($colors, 'danger')};
+      }
+      .car-model {
+        &--list {
+          @extend .row;
+          padding-left: $default-padding;
+          padding-right: $default-padding;
+          li {
+            @extend .col--4;
+            @extend .txt--center;
+            border-bottom: 1px solid rgba(map.get($colors, 'primary'), .2);
+            img {
+              width: 100%;
+            }
+          } 
+          &.commercial {
+            li {
+              border-bottom: 0;
+            }
+          }
+        }
+        &--title {
+          margin: $default-padding 0;
+        }
+      }
+    }
+    .social-menu {
+      padding: pxToREM(30) 0;
+      img {
+        width: 32px;
+        margin-bottom: calc($default-padding / 2);
+      }
+      span {
+        display: block;
+        text-align: center;
+      }
+    }
+  }
+}
+
+
+.float-icn {
+  @extend .pos--fixed;
+  @extend .bg--light;
+  @extend .d--flex;
+  @extend .row--item-center;
+  @extend .row--content-around;
+  box-shadow: 1px 1px 10px rgba(map.get($colors, 'primary'), .2);
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  top: calc(50% - 25px);
+  right: $default-padding;
+  z-index: 9;
+  flex-wrap: wrap;
+  padding: calc($default-padding / 1.5);
+  box-shadow: 1px 1px 10px rgba(map.get($colors, 'primary'), .5);
+  cursor: pointer;
+  &__close {
+    width: 14px;
+    display: none;
+  }
+  .pallet {
+    width: 12px;
+    height: 11px;
+    border: 1px solid #{map.get($colors, 'primary')};
+    border-radius: 3px;
+    transition: all .3s ease;
+    &:not(:first-child) {
+      background: map.get($colors, 'primary');
+    }
+  }
+  &:hover {
+    .pallet {
+      background: map.get($colors, 'blue');
+      &:not(:first-child) {
+        background: none;
+      }
+    }
+  }
+  &.active {
+    .pallet {
+      display: none;
+    }
+    .float-icn__close {
+      display: block;
+    }
+  }
+}
+
+.float-menu {
+  position: fixed;
+  width: 50px;
+  height: 240px;
+  top: calc(50% - 120px);
+  right: 80px;
+  transform: scale(0);
+  z-index: 9;
+  @extend .d--flex;
+  @extend .flex--dir-col;
+  @extend .row--content-between;
+  > * {
+    @extend .d--flex;
+    @extend .row--content-center;
+    @extend .row--item-center;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background: #{map.get($colors, 'light')};
+    transition: all .3s ease;
+    border: 1px solid #{map.get($colors, 'light')};
+    @extend .pos--relative;
+    .float-img {
+      width: 100%;
+      height: 100%;
+      background: rgba(map.get($colors, 'light'), $alpha: .8);
+      @extend .d--flex;
+      @extend .row--item-center;
+      @extend .row--content-center;
+      border-radius: 50px;
+      z-index: 2;
+    }
+    .float-info {
+      @extend .pos--absolute;
+      @extend .d--flex;
+      @extend .row--item-center;
+      @extend .row--content-center;
+      width: 0;
+      height: calc(100% + 2px);
+      top: -1px;
+      right: -1px;
+      border: 0px solid #{map.get($colors, 'light')};
+      border-radius: 50px;
+      padding-left: 0px;
+      overflow: hidden;
+      transition: all .4s ease;
+      opacity: 0;
+      cursor: pointer;
+      span {
+        display: inline-block;
+        width: 200px;
+        color: #{map.get($colors, 'blue')};
+      }
+    }
+    &:hover {
+      img {
+        &.light {
+          display: block;
+        }
+        &.dark {
+          display: none;
+        }
+      }
+      .float-img {
+        background: #{map.get($colors, 'blue')};
+      }
+      .float-info {
+        border-width: 1px;
+        padding-left: 20px;
+        width: 220px;
+        opacity: 1;
+        background: rgba(map.get($colors, 'light'), $alpha: .8);
+      }
+    }
+    img {
+      width: 60%;
+      &.light {
+        display: none;
       }
     }
   }
